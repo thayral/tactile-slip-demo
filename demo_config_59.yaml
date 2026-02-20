@@ -1,0 +1,23 @@
+net_base:
+  mid_depth: 4
+  mid_feature_dim: 64
+  dropout_temporal_proba: 0.05
+  rnn_dropout_proba: 0.15
+  batch_norm: false
+net_extras:
+  conscious_sensor: 'True'
+  conscious_torques: 'True'
+  minfreq: 1
+  maxfreq: None
+  max_freq_Hz: 650  # Hz
+
+
+dataset:
+  base:
+    split_seed: 999
+    synchro_offset_torques: 0
+    num_welch_pad: 0
+    shift_vel_left: -1
+  training:
+    clip_len: 256
+    test_clip_mode: full_len
