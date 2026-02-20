@@ -1,6 +1,6 @@
 # Tactile slip detection demo (PzE sensors)
 
-Minimal demo for spectro-temporal slip detection in robotic manipulation using tactile PzE signals (FFT + GRU).
+Minimal demo for slip detection in robotic manipulation using tactile PzE signals (FFT + GRU pipeline).
 
 ## Run
 
