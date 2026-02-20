@@ -37,4 +37,16 @@ This includes a small demo dataset for inference.
 
 Runs on CPU by default (CUDA not required).
 
+---
+
+
+➡️ Project page: [https://thayral.github.io/tactile-slip-detection-pze/](https://thayral.github.io/tactile-slip-detection-pze/)
+
+
+
+
+➡️ This work is part of the PhD thesis  
+**Learning-based slip detection for adaptive grasp control**  
+Théo AYRAL -
+CEA (Leti & List) · Université Paris-Saclay
 
