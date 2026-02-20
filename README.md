@@ -1,6 +1,6 @@
 # Tactile slip detection demo (PzE sensors)
 
-Minimal demo for spectro-temporal slip detection in robotic manipulation using tactile PzE signals (Welch PSD → PyTorch model).
+Minimal demo for spectro-temporal slip detection in robotic manipulation using tactile PzE signals (FFT + GRU).
 
 ## Run
 
