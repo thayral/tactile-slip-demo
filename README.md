@@ -23,5 +23,5 @@ python demo_infer_clean.py
 
 The repo is about 30Mo.
 This includes a small demo dataset for inference.
-
+(It takes 5 min to download, install dependencies and run.)
 
