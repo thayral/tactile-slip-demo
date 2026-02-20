@@ -37,6 +37,12 @@ This includes a small demo dataset for inference.
 
 Runs on CPU by default (CUDA not required).
 
+
+
+> Design note: The dataset is split into two files (inference data and additional visualization data). 
+> Raw signals used for visualization are loaded separately from the inference dataset
+> and matched via sample identifiers, to keep the model pipeline side-effect free.
+
 ---
 
 

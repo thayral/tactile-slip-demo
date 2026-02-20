@@ -129,26 +129,20 @@ def main():
     ###  DEMO  LOADER
     for batch in loader:
 
+        # full_input contains spectrogram + haptic signals.
+        # labels_dense is temporal 1D binary
+        # info_seg_dict contains metadata on the sample segment (id, clip limits, ...)
+        _, labels_dense, _, full_input, info_seg_dict = batch
 
-        inputs, labels_dense, _, conscious_data, info_seg_dict = batch
-
-        # print(info_seg_dict[0]["seg_type"])
-
-        conscious_data = conscious_data.float() 
-
+        full_input = full_input.float() 
         labels_dense = labels_dense.float()    
          
  
-        outputs = model(conscious_data)
-
-
-
-
+        outputs = model(full_input)
         outputs = outputs.squeeze(dim=1)
          
         probs = torch.sigmoid(outputs.data)  # Convert to probabilities
         predicted_dense = (probs >= 0.5).float()  # Convert to class labels (0 or 1)
-
 
         # POST PROCESS SMOOTHING PREDICTION, remove outlier slip  detection  (lonely ones)
         for b in range(predicted_dense.shape[0]):
@@ -163,27 +157,17 @@ def main():
 
 
         res_dict = {}
-        res_dict['slip_run_id'] = info_seg_dict[b]['slip_run_id'] 
-
-
+        # input, label, pred
+        # res_dict['inputs'] = inputs.cpu().numpy()[b]
         res_dict['labels_dense'] = labels_dense.cpu().numpy()[b]
+        res_dict['outputs'] = outputs.cpu().numpy()[b]
         res_dict['predicted_dense'] = predicted_dense.cpu().numpy()[b]
-
-
+        # metadata
+        res_dict['slip_run_id'] = info_seg_dict[b]['slip_run_id'] 
         res_dict["clip_wlech_limits"] = info_seg_dict[b]['clip_wlech_limits'] 
-
-
         res_dict['seg_type'] = info_seg_dict[b]['seg_type']
         res_dict['pze_col_name'] = info_seg_dict[b]['pze_col_name']
 
-
-
-
-        res_dict['inputs'] = inputs.cpu().numpy()[b]
-
-
-        # res_dict['acc_mask'] = None # = info_seg_dict[b]['clear_selection_formaskacc']  
-        res_dict['outputs'] = outputs.cpu().numpy()[b]
 
 
         test_results.append(res_dict)
